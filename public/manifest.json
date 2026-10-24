@@ -1,0 +1,68 @@
+{
+  "name": "MarketPulse — Systematic NSE/BSE Trading & Valuation",
+  "short_name": "MarketPulse",
+  "description": "Real-time NSE/BSE Market Intelligence, Fair Value Screener, Smart Money Concepts & Wealth Advisory",
+  "start_url": "/",
+  "id": "/",
+  "display": "standalone",
+  "background_color": "#070B14",
+  "theme_color": "#4F46E5",
+  "orientation": "portrait-primary",
+  "scope": "/",
+  "icons": [
+    {
+      "src": "/icons/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icons/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icons/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/icons/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ],
+  "categories": [
+    "finance",
+    "business",
+    "productivity",
+    "utilities"
+  ],
+  "shortcuts": [
+    {
+      "name": "Live Money Flow",
+      "short_name": "Money Flow",
+      "description": "View institutional money flow river",
+      "url": "/?tab=money-flow",
+      "icons": [{ "src": "/icons/icon-192x192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Stock Radar",
+      "short_name": "Radar",
+      "description": "Analyze technical and options radar",
+      "url": "/?tab=stock-radar",
+      "icons": [{ "src": "/icons/icon-192x192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Aladdin Advisor",
+      "short_name": "Aladdin",
+      "description": "Stock and IPO decision support",
+      "url": "/?tab=aladdin-advisory",
+      "icons": [{ "src": "/icons/icon-192x192.png", "sizes": "192x192" }]
+    }
+  ],
+  "prefer_related_applications": false
+}

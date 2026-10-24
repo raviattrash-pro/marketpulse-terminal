@@ -130,7 +130,8 @@ export default function PwaInstallButton({ variant = 'header' }: { variant?: 'he
                   soundEffects.playClick();
                   setShowIosGuide(false);
                 }}
-                className="absolute right-4 top-4 text-slate-400 hover:text-white p-1 rounded-full bg-slate-800"
+                className="absolute right-4 top-4 text-slate-400 hover:text-white p-1 rounded-full bg-slate-800 cursor-pointer"
+                aria-label="Close install instructions"
               >
                 <X className="w-4 h-4" />
               </button>
@@ -215,14 +216,16 @@ export default function PwaInstallButton({ variant = 'header' }: { variant?: 'he
         <div className="flex items-center gap-2 shrink-0">
           <button
             onClick={handleInstallClick}
-            className="bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold px-3 py-1.5 rounded-xl flex items-center gap-1 shadow-sm active:scale-95 transition cursor-pointer"
+            className="bg-emerald-700 hover:bg-emerald-600 text-white text-xs font-bold px-3 py-1.5 rounded-xl flex items-center gap-1 shadow-sm active:scale-95 transition cursor-pointer"
+            aria-label="Install MarketPulse application"
           >
             <Download className="w-3.5 h-3.5" />
             <span>Install</span>
           </button>
           <button
             onClick={() => setBannerDismissed(true)}
-            className="text-slate-400 hover:text-white p-1 rounded-lg"
+            className="text-slate-400 hover:text-white p-1 rounded-lg cursor-pointer"
+            aria-label="Dismiss app install banner"
           >
             <X className="w-4 h-4" />
           </button>

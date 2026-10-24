@@ -351,7 +351,7 @@ export default function MarketPulseHeader({
                 <span>{tab.label}</span>
                 {tab.badge && (
                   <span className={`text-[9px] px-1.5 py-0.2 rounded-full font-bold font-mono ${
-                    isActive ? 'bg-white/20 text-white' : 'bg-indigo-50 text-indigo-700 border border-indigo-200/80'
+                    isActive ? 'bg-white text-indigo-700 shadow-2xs' : 'bg-indigo-50 text-indigo-700 border border-indigo-200/80'
                   }`}>
                     {tab.badge}
                   </span>

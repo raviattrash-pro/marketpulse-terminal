@@ -2073,11 +2073,11 @@ export default function MoneyFlowAnimated() {
 
             <div className="flex items-center gap-2 shrink-0">
               <div className="bg-white border border-slate-200 px-3 py-1.5 rounded-xl text-center shadow-2xs">
-                <span className="text-[10px] text-slate-400 uppercase font-mono block">Best Stock</span>
+                <span className="text-[10px] text-slate-600 font-bold uppercase font-mono block">Best Stock</span>
                 <span className="text-xs font-black text-emerald-700">TCS (Bullish)</span>
               </div>
               <div className="bg-white border border-slate-200 px-3 py-1.5 rounded-xl text-center shadow-2xs">
-                <span className="text-[10px] text-slate-400 uppercase font-mono block">Action</span>
+                <span className="text-[10px] text-slate-600 font-bold uppercase font-mono block">Action</span>
                 <span className="text-xs font-black text-indigo-700">Buy IT on Retest</span>
               </div>
             </div>
@@ -2111,25 +2111,25 @@ export default function MoneyFlowAnimated() {
           {/* Top Inflow / Outflow Quick Summary Cards */}
           <div className="grid grid-cols-2 gap-2">
             <div className="bg-emerald-50/90 border border-emerald-200 rounded-xl p-2.5 shadow-2xs">
-              <span className="text-[10px] font-bold text-emerald-800 uppercase block truncate">
+              <span className="text-[10px] font-bold text-emerald-900 uppercase block truncate">
                 {selectedSector ? `${selectedSector} INFLOW` : 'TOTAL INFLOW'}
               </span>
-              <div className="text-lg sm:text-xl font-black text-emerald-600 font-mono">
+              <div className="text-lg sm:text-xl font-black text-emerald-800 font-mono">
                 {totalInflowDisplay}
               </div>
-              <span className="text-[9.5px] text-emerald-700 font-mono mt-0.5 block truncate">
+              <span className="text-[9.5px] text-emerald-800 font-mono mt-0.5 block truncate">
                 {displayedInflowStocks.slice(0, 3).map((s) => s.symbol).join(', ') || 'No heavy inflow'}
               </span>
             </div>
 
             <div className="bg-rose-50/90 border border-rose-200 rounded-xl p-2.5 shadow-2xs">
-              <span className="text-[10px] font-bold text-rose-800 uppercase block truncate">
+              <span className="text-[10px] font-bold text-rose-900 uppercase block truncate">
                 {selectedSector ? `${selectedSector} OUTFLOW` : 'TOTAL OUTFLOW'}
               </span>
-              <div className="text-lg sm:text-xl font-black text-rose-600 font-mono">
+              <div className="text-lg sm:text-xl font-black text-rose-800 font-mono">
                 {totalOutflowDisplay}
               </div>
-              <span className="text-[9.5px] text-rose-700 font-mono mt-0.5 block truncate">
+              <span className="text-[9.5px] text-rose-800 font-mono mt-0.5 block truncate">
                 {displayedOutflowStocks.slice(0, 3).map((s) => s.symbol).join(', ') || 'No heavy outflow'}
               </span>
             </div>
@@ -2641,7 +2641,7 @@ export default function MoneyFlowAnimated() {
                     : 'Friday Institutional Close'}
                 </span>
               </div>
-              <div className="text-2xl font-black text-emerald-600 font-mono tracking-tight mb-3">
+              <div className="text-2xl font-black text-emerald-800 font-mono tracking-tight mb-3">
                 {totalInflowDisplay}
               </div>
 
@@ -2717,7 +2717,7 @@ export default function MoneyFlowAnimated() {
                     : 'Friday Institutional Close'}
                 </span>
               </div>
-              <div className="text-2xl font-black text-rose-600 font-mono tracking-tight mb-3">
+              <div className="text-2xl font-black text-rose-800 font-mono tracking-tight mb-3">
                 {totalOutflowDisplay}
               </div>
 

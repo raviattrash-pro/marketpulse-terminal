@@ -9,9 +9,13 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://marketpulse-terminal.vercel.app'),
   title: 'MarketPulse - Real-time NSE/BSE Intelligence & Educational Analytics',
   description: 'Educational stock valuation, options payoff simulation, Smart Money Concepts order blocks & financial literacy platform.',
   manifest: '/manifest.json',
+  alternates: {
+    canonical: '/',
+  },
   appleWebApp: {
     capable: true,
     statusBarStyle: 'black-translucent',

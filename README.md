@@ -13,12 +13,12 @@ An institutional-grade, full-spectrum Indian financial terminal, wealth advisory
 MarketPulse bridges the gap between institutional hedge fund analytics and retail traders by unifying fundamental valuation models, Smart Money Concepts (SMC), derivative flow metrics, and behavioral execution safeguards into a unified, zero-latency Progressive Web App (PWA).
 
 <p align="center">
-  <img src="docs/images/01-aladdin-wealth-terminal.png" alt="MarketPulse Terminal Live Overview" width="100%" style="border-radius: 12px; box-shadow: 0 20px 40px rgba(0,0,0,0.6);" />
+  <img src="docs/images/social-preview.png" alt="MarketPulse Terminal Social Preview Banner" width="100%" style="border-radius: 12px; box-shadow: 0 20px 40px rgba(0,0,0,0.6);" />
 </p>
 
 ---
 
-## 🎯 The Problem MarketPulse Solves
+## 🎯 The Problems MarketPulse Solves
 
 Retail market participants in the Indian capital markets face four fundamental handicaps:
 
@@ -137,39 +137,49 @@ flowchart LR
 
 ---
 
-## 🚀 Deep-Dive Feature Breakdown
+## 🚀 Interactive Feature Showcase
 
-### 1. Aladdin Wealth Advisory Terminal
-* **Multi-Asset Coverage**: Real-time analytical coverage across Indian Bluechips, Mid-caps, ETFs (`NIFTYBEES`, `GOLDBEES`), and upcoming/recent IPOs (e.g. *Waaree Energies*, *Tata Capital*, *HDB Financial*, *Swiggy*, *SBI Funds*).
+### 1. Live Money Flow River & Sector Inflow/Outflow Breadth
+* **Real-time Particle Flow**: Dynamic SVG vector physics simulating institutional capital movement across major Indian market sectors (IT, Banking, Auto, Energy, Infra, FMCG).
+* **Actionable ELI5 Market Verdict**: Instant plain English synthesis of big money accumulation vs distribution patterns.
+* **Granular Stock Attribution**: Breakdowns of exact capital amounts flowing into stocks like TCS, Infosys, Reliance, and out of distribution sectors.
+
+<p align="center">
+  <img src="docs/images/01-money-flow-river.png" alt="Money Flow River & Sector Liquidity" width="100%" style="border-radius: 12px; box-shadow: 0 16px 36px rgba(0,0,0,0.5);" />
+</p>
+
+---
+
+### 2. Aladdin Wealth Advisory Terminal
+* **Tri-Asset Fundamental Radar**: Evaluates **Indian Equities**, **Mutual Funds/ETFs**, and **Current/Upcoming IPOs** with real-time Grey Market Premiums (GMP).
 * **Benjamin Graham Formula**: Calculates intrinsic value with built-in safety margins:
   $$\text{Intrinsic Value} = \sqrt{22.5 \times \text{EPS} \times \text{BVPS}}$$
   Displays whether a stock is currently trading in the **Deep Value Zone**, **Fair Value Range**, or **Froth / Bubble Zone**.
-* **DuPont 3-Pillar Analysis**: Deconstructs Return on Equity into:
+* **DuPont 3-Pillar RoE Deconstruction**:
   $$\text{RoE} = \left(\frac{\text{Net Income}}{\text{Revenue}}\right) \times \left(\frac{\text{Revenue}}{\text{Total Assets}}\right) \times \left(\frac{\text{Total Assets}}{\text{Shareholders' Equity}}\right)$$
-  Differentiates genuine operational margin expansion from artificial leverage-driven balance sheet bloat.
-* **IPO Intelligence & Valuation Ratios**: Compares cutoff P/E with industry peer medians, GMP trajectories, retail quota demand, and provides actionable verdicts (*"MUST SUBSCRIBE FOR LISTING GAINS"*, *"TACTICALLY AVOID"*).
+* **IPO Intelligence & Cutoff P/E**: Directly benchmarks IPO valuation against industry peers to deliver automated, data-backed subscription verdicts (*"MUST SUBSCRIBE"*, *"TACTICALLY AVOID"*).
 
 <p align="center">
-  <img src="docs/images/02-advisory-pro-deepdive.png" alt="Aladdin Wealth Advisory Pro Deep Dive" width="100%" style="border-radius: 12px; box-shadow: 0 16px 36px rgba(0,0,0,0.5);" />
+  <img src="docs/images/02-aladdin-wealth-advisory.png" alt="Aladdin Wealth Advisory Terminal" width="100%" style="border-radius: 12px; box-shadow: 0 16px 36px rgba(0,0,0,0.5);" />
 </p>
 
 ---
 
-### 2. Smart Money Concepts (SMC) & Liquidity Radar
-* **Buy-Side Liquidity (BSL) & Sell-Side Liquidity (SSL)**: Auto-detects where retail stop-losses accumulate above swing highs and below swing lows.
-* **Fair Value Gaps (FVG)**: Identifies 3-candle price imbalances left behind by rapid institutional order execution.
-* **Institutional Order Blocks**: Maps high-probability reaction zones where banks and institutional desks entered prior expansion moves.
+### 3. Smart Money Concepts (SMC) & Institutional Order Blocks
+* **Order Block Mapping**: Visualizes refined high-timeframe bullish and bearish order blocks where institutional smart money enters positions.
+* **Buy-Side Liquidity (BSL) & Sell-Side Liquidity (SSL)**: Pinpoints stop-loss pools above swing highs and swing lows that institutions target for liquidity sweeps.
+* **Fair Value Gaps (FVG)**: Tracks 3-candle price imbalances created by aggressive institutional buying or selling.
 
 <p align="center">
-  <img src="docs/images/03-smc-trade-blueprint.png" alt="Smart Money Concepts & Trade Blueprint" width="100%" style="border-radius: 12px; box-shadow: 0 16px 36px rgba(0,0,0,0.5);" />
+  <img src="docs/images/03-order-block-smc.png" alt="Smart Money Concepts & Order Blocks" width="100%" style="border-radius: 12px; box-shadow: 0 16px 36px rgba(0,0,0,0.5);" />
 </p>
 
 ---
 
-### 3. Derivative Flow & Option Strategy Engineering
-* **Live OI & Strike Matrix**: Visualizes Call OI vs Put OI across key strike prices to detect option writers' boundaries.
-* **Put-Call Ratio (PCR) Sentiment**: Automatically categorizes market sentiment into Oversold ($\text{PCR} < 0.70$), Neutral/Bullish ($1.0 \le \text{PCR} \le 1.3$), or Overbought/Euphoric ($\text{PCR} > 1.40$).
-* **Multi-Leg Payoff Curves**: Interactive payoff diagrams for **Iron Condor**, **Bull Call Spread**, **Bear Put Spread**, and **Long Straddle** with exact breakevens, max loss, and max profit calculations.
+### 4. Derivative Flow & Option Pulse Matrix
+* **Real-time Call vs. Put Open Interest**: Multi-strike visualizer displaying option writer concentration at major round-number strikes.
+* **Put-Call Ratio (PCR) Sentiment**: Automatically classifies sentiment into Oversold ($\text{PCR} < 0.70$), Neutral/Bullish ($1.0 \le \text{PCR} \le 1.3$), or Overbought ($\text{PCR} > 1.40$).
+* **Multi-Leg Payoff Simulator**: Interactive profit & loss curves for **Iron Condors**, **Bull Call Spreads**, **Bear Put Spreads**, and **Long Straddles**.
 
 <p align="center">
   <img src="docs/images/04-option-pulse-heatmap.png" alt="Option Pulse Heatmap & PCR" width="100%" style="border-radius: 12px; box-shadow: 0 16px 36px rgba(0,0,0,0.5);" />
@@ -177,21 +187,25 @@ flowchart LR
 
 ---
 
-### 4. Capital Preservation & Discipline Engine
-* **Mathematical Position Sizer**: Given account capital and stop-loss points, computes the exact permissible number of lots/shares to cap risk strictly between 1% and 2%.
-* **Anti-Revenge Circuit Breaker**: Locks trading execution mechanisms if consecutive stop-outs or max daily drawdowns are triggered.
-* **Pre-Trade Gatekeeper Checklist**: Mandatory 6-point discipline verification (Trend alignment, Risk-to-Reward $\ge 1:2$, Catalyst check, Spread verification, Position size confirmation).
-* **Local Browser Journal**: Stores trades, win rates, and emotional tags locally in browser storage without third-party telemetry.
+### 5. TradeBlueprint Dark Terminal & Capital Risk Manager
+* **Mathematical Position Sizer**: Automatically calculates permissible lot and share size based on account balance and stop-loss distance, enforcing a strict 1%–2% capital risk rule.
+* **Anti-Revenge Circuit Breaker**: Locks execution mechanisms upon hitting 2 consecutive stop-outs or maximum daily loss thresholds.
+* **Pre-Trade Discipline Gatekeeper**: Mandatory 6-point checklist to filter out impulsive, FOMO-driven trades.
+* **Local Browser Journal**: Stores setups, win rates, and emotional tags locally in the browser with zero external telemetry.
+
+<p align="center">
+  <img src="docs/images/05-trade-blueprint-terminal.png" alt="TradeBlueprint Dark Workspace & Risk Sizer" width="100%" style="border-radius: 12px; box-shadow: 0 16px 36px rgba(0,0,0,0.5);" />
+</p>
 
 ---
 
-### 5. Native Progressive Web App (PWA) & Mobile Master-Detail Interface
-* **Full PWA Support**: Installable as a standalone app on iOS, Android, macOS, and Windows with custom icons, theme colors, and offline service worker caching.
-* **Master-Detail Adaptive Navigation**: On mobile screens, switches seamlessly between the 29-asset Universe list and deep-dive analytics with 1-tap `← Back to Universe` navigation.
-* **Zero-Latency Web Audio Synthesizer**: Uses native HTML5 Web Audio API oscillators to generate crisp acoustic feedback on clicks, tab switches, and warnings without external audio downloads.
+### 6. Native Progressive Web App (PWA) & Mobile Master-Detail View
+* **Offline-Ready Progressive Web App**: Fully installable on iOS, Android, macOS, and Windows with custom icons and service worker caching.
+* **Master-Detail Adaptive Navigation**: Seamlessly toggles between the 29-asset Universe list and deep-dive analytics with 1-tap `← Back to Universe` navigation on mobile devices.
+* **Synthesized Web Audio Micro-Interactions**: Native HTML5 Web Audio API oscillators producing crisp acoustic feedback for clicks, switches, and alerts without audio asset overhead.
 
 <p align="center">
-  <img src="docs/images/05-mobile-pwa-responsive.png" alt="Mobile PWA Responsive Master-Detail Experience" width="380" style="border-radius: 20px; box-shadow: 0 20px 40px rgba(0,0,0,0.7); border: 1px solid #1E293B;" />
+  <img src="docs/images/06-mobile-pwa-advisory.png" alt="Mobile PWA Responsive Master-Detail Terminal" width="380" style="border-radius: 24px; box-shadow: 0 20px 40px rgba(0,0,0,0.7); border: 1px solid #1E293B;" />
 </p>
 
 ---
@@ -245,14 +259,13 @@ npm run dev
 
 Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-### Production Build
-```bash
-# Build optimized production bundle
-npm run build
-
-# Start production server
-npm start
-```
+### Direct Tab URL Routing
+You can link directly to any section using query parameters:
+* Money Flow River: `http://localhost:3000/?tab=money-flow`
+* Aladdin Advisory: `http://localhost:3000/?tab=aladdin-advisory`
+* Order Block SMC: `http://localhost:3000/?tab=order-block`
+* Option Pulse: `http://localhost:3000/?tab=option-pulse`
+* Trade Blueprint: `http://localhost:3000/?tab=trade-blueprint`
 
 ---
 

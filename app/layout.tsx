@@ -29,6 +29,28 @@ export const metadata: Metadata = {
   verification: {
     google: 'google00f9059f5265dae5',
   },
+  openGraph: {
+    title: 'MarketPulse - Real-time NSE/BSE Intelligence & Aladdin Wealth Advisory',
+    description: 'Institutional-grade multi-asset advisory, Smart Money Concepts (SMC), Benjamin Graham valuations, and live Indian market intelligence.',
+    url: 'https://marketpulse-terminal.vercel.app',
+    siteName: 'MarketPulse Terminal',
+    images: [
+      {
+        url: '/social-preview.png',
+        width: 1200,
+        height: 630,
+        alt: 'MarketPulse Terminal Social Preview',
+      },
+    ],
+    locale: 'en_IN',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'MarketPulse Terminal - Institutional Wealth Advisory & Trading Copilot',
+    description: 'Real-time Indian financial terminal & PWA copilot with Smart Money Concepts, Graham Intrinsic Values, and live NSE/BSE feeds.',
+    images: ['/social-preview.png'],
+  },
 };
 
 export default function RootLayout({

@@ -59,6 +59,17 @@ export default function Home() {
 
   useEffect(() => {
     setMounted(true);
+    if (typeof window !== 'undefined') {
+      const params = new URLSearchParams(window.location.search);
+      const tabParam = params.get('tab') as PulseTab;
+      if (tabParam) {
+        setActiveTab(tabParam);
+      }
+      const sectionParam = params.get('section') as MainSection;
+      if (sectionParam) {
+        setBlueprintSection(sectionParam);
+      }
+    }
   }, []);
 
   const handleLoadTrade = (name: string, cmp: number, sl: number) => {

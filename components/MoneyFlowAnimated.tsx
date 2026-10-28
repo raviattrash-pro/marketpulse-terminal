@@ -1345,12 +1345,16 @@ export default function MoneyFlowAnimated() {
   const [marketStatus, setMarketStatus] = useState<{
     isMarketOpen: boolean;
     sessionState: string;
+    sessionDay?: string;
+    isWeekend?: boolean;
     label: string;
     subLabel: string;
     nextOpenNotice?: string;
   }>({
     isMarketOpen: false,
     sessionState: 'WEEKEND_CLOSED',
+    sessionDay: 'Friday',
+    isWeekend: true,
     label: 'Market Closed (Weekend)',
     subLabel: 'Showing Friday Close net flows · Opens Monday 9:15 AM IST',
     nextOpenNotice: 'NSE & BSE will open on Monday at 09:15 AM IST',
@@ -1597,7 +1601,8 @@ export default function MoneyFlowAnimated() {
       const sum = displayedInflowStocks.reduce((acc, s) => acc + (s.flowCr || 120), 0);
       return `+₹${sum.toLocaleString()} cr`;
     }
-    return '+₹3,686 cr';
+    const total = liveSectors.reduce((acc, s) => acc + (s.inflow || (s.net > 0 ? s.net : 0)), 0);
+    return `+₹${(total || 3686).toLocaleString()} cr`;
   }, [selectedSector, liveSectors, displayedInflowStocks]);
 
   const totalOutflowDisplay = useMemo(() => {
@@ -1607,7 +1612,8 @@ export default function MoneyFlowAnimated() {
       const sum = displayedOutflowStocks.reduce((acc, s) => acc + (s.flowCr || 120), 0);
       return `-₹${sum.toLocaleString()} cr`;
     }
-    return '-₹25,945 cr';
+    const total = liveSectors.reduce((acc, s) => acc + (s.outflow || (s.net < 0 ? Math.abs(s.net) : 0)), 0);
+    return `-₹${(total || 25945).toLocaleString()} cr`;
   }, [selectedSector, liveSectors, displayedOutflowStocks]);
 
   const handleSectorClick = (sectorName: string) => {
@@ -1674,9 +1680,14 @@ export default function MoneyFlowAnimated() {
               return prev.map((sec) => {
                 const match = pData.sectors.find((s: any) => s.name.toLowerCase() === sec.name.toLowerCase());
                 if (match) {
+                  const net = match.netFlowCr;
+                  const inflow = match.inflowCr || (net > 0 ? Math.round(Math.abs(net) * 1.2) : Math.round(Math.abs(net) * 0.3));
+                  const outflow = match.outflowCr || (net < 0 ? Math.round(Math.abs(net) * 1.2) : Math.round(Math.abs(net) * 0.3));
                   return {
                     ...sec,
-                    net: match.netFlowCr,
+                    net,
+                    inflow,
+                    outflow,
                   };
                 }
                 return sec;
@@ -2018,6 +2029,10 @@ export default function MoneyFlowAnimated() {
   }, [mobileTab, marketStatus.isMarketOpen, replayTape]);
 
   const maxAbsNet = Math.max(1, ...liveSectors.map((s) => Math.abs(s.net)));
+  const sessionDayName = marketStatus.sessionDay || 'Settled';
+  const netMarketBreadthCr = useMemo(() => {
+    return liveSectors.reduce((acc, s) => acc + s.net, 0);
+  }, [liveSectors]);
 
   return (
     <div className="bg-[#F8FAFC] min-h-screen text-slate-900 font-sans p-3 sm:p-4 md:p-6 select-none">
@@ -2028,7 +2043,7 @@ export default function MoneyFlowAnimated() {
             {!marketStatus.isMarketOpen ? (
               <span className="bg-rose-100 text-rose-800 text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider shrink-0 flex items-center gap-1">
                 <span className="w-1.5 h-1.5 rounded-full bg-rose-500"></span>
-                Weekend Settled Session
+                {marketStatus.sessionState === 'WEEKEND_CLOSED' ? 'Weekend Settled Session' : `${sessionDayName} Settled Session`}
               </span>
             ) : (
               <span className="bg-emerald-100 text-emerald-800 text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider shrink-0 flex items-center gap-1">
@@ -2039,16 +2054,18 @@ export default function MoneyFlowAnimated() {
             <span className="font-bold text-slate-800 shrink-0">Rotating into IT;</span>
             <span className="text-slate-600">
               Banking &amp; Cap goods seeing institutional outflows; {marketStatus.isMarketOpen ? 'live' : 'settled'} breadth:{' '}
-              <span className="text-rose-600 font-semibold">-₹18,450 cr</span>;
+              <span className={`font-semibold ${netMarketBreadthCr >= 0 ? 'text-emerald-600' : 'text-rose-600'}`}>
+                {netMarketBreadthCr >= 0 ? `+₹${netMarketBreadthCr.toLocaleString()} cr` : `-₹${Math.abs(netMarketBreadthCr).toLocaleString()} cr`}
+              </span>;
             </span>
             <span className="hidden md:flex items-center gap-1 text-amber-600 font-semibold shrink-0 bg-amber-50 px-2 py-0.5 rounded-full border border-amber-200 text-xs font-mono">
               <Zap className="w-3.5 h-3.5 text-amber-500 fill-amber-500" />
-              TCS (+2.8%)
+              {displayedInflowStocks[0] ? `${displayedInflowStocks[0].symbol} (${displayedInflowStocks[0].change})` : 'TCS (+2.8%)'}
             </span>
           </div>
           <div className="flex items-center gap-1.5 text-[10.5px] sm:text-[11px] font-mono text-slate-500 shrink-0 self-end sm:self-auto">
             <span className={`w-1.5 h-1.5 rounded-full ${marketStatus.isMarketOpen ? 'bg-emerald-500 animate-pulse' : 'bg-rose-500'}`}></span>
-            <span>{marketStatus.isMarketOpen ? lastSync : 'Friday Close Settled · Reopens Mon 9:15 AM'}</span>
+            <span>{marketStatus.isMarketOpen ? lastSync : (marketStatus.sessionState === 'WEEKEND_CLOSED' ? 'Friday Close Settled · Reopens Mon 9:15 AM' : `${sessionDayName} Close Settled · ${marketStatus.nextOpenNotice || 'Reopens 9:15 AM'}`)}</span>
           </div>
         </div>
 
@@ -2208,7 +2225,7 @@ export default function MoneyFlowAnimated() {
                   </span>
                   {!marketStatus.isMarketOpen && (
                     <span className="text-[9px] font-mono font-bold text-rose-700 bg-rose-50 px-2 py-0.5 rounded-md border border-rose-200">
-                      Weekend Settled
+                      {marketStatus.sessionState === 'WEEKEND_CLOSED' ? 'Weekend Settled' : `${sessionDayName} Settled`}
                     </span>
                   )}
                 </div>
@@ -2588,21 +2605,21 @@ export default function MoneyFlowAnimated() {
             {/* Top Status Header - Positioned OUTSIDE canvas so it NEVER overlaps inflow stream */}
             <div className="shrink-0 pb-2 text-center flex flex-col items-center gap-1.5 border-b border-slate-200/40">
               <div className="text-[10px] text-slate-400 font-mono tracking-widest uppercase font-semibold">
-                {marketStatus.isMarketOpen ? 'Live Flow River (Active Stream)' : 'Settled Flow River (Friday Session)'}
+                {marketStatus.isMarketOpen ? 'Live Flow River (Active Stream)' : `Settled Flow River (${sessionDayName} Session)`}
               </div>
 
               {!marketStatus.isMarketOpen && (
                 <div className="flex items-center justify-center gap-2 flex-wrap">
                   <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 bg-slate-900 text-white rounded-full text-[10px] font-mono shadow-xs">
                     <span className="w-1.5 h-1.5 rounded-full bg-rose-500"></span>
-                    <span className="font-bold tracking-tight">MARKET CLOSED (WEEKEND)</span>
+                    <span className="font-bold tracking-tight">{(marketStatus.label || 'MARKET CLOSED').toUpperCase()}</span>
                   </div>
                   <button
                     type="button"
                     onClick={() => setReplayTape(!replayTape)}
                     className="text-[10.5px] bg-indigo-50 hover:bg-indigo-100 text-indigo-700 border border-indigo-200 px-2.5 py-0.5 rounded-full font-sans font-medium transition cursor-pointer shadow-2xs flex items-center gap-1"
                   >
-                    <span>{replayTape ? '⏸️ Settled Drift' : '▶ Replay Friday Stream'}</span>
+                    <span>{replayTape ? '⏸️ Settled Drift' : `▶ Replay ${sessionDayName} Stream`}</span>
                   </button>
                 </div>
               )}
@@ -2631,14 +2648,14 @@ export default function MoneyFlowAnimated() {
                     ? `${selectedSector} INFLOW`
                     : marketStatus.isMarketOpen
                     ? 'INFLOW ACCUMULATION'
-                    : 'FRIDAY SETTLED INFLOW'}
+                    : `${sessionDayName.toUpperCase()} SETTLED INFLOW`}
                 </span>
                 <span className="text-xs text-emerald-700 font-semibold bg-emerald-100 px-2 py-0.5 rounded-full font-mono">
                   {selectedSector
                     ? `${selectedSector} Money IN`
                     : marketStatus.isMarketOpen
                     ? 'Live Smart Money'
-                    : 'Friday Institutional Close'}
+                    : `${sessionDayName} Institutional Close`}
                 </span>
               </div>
               <div className="text-2xl font-black text-emerald-800 font-mono tracking-tight mb-3">
@@ -2707,14 +2724,14 @@ export default function MoneyFlowAnimated() {
                     ? `${selectedSector} OUTFLOW`
                     : marketStatus.isMarketOpen
                     ? 'OUTFLOW DISTRIBUTION'
-                    : 'FRIDAY SETTLED OUTFLOW'}
+                    : `${sessionDayName.toUpperCase()} SETTLED OUTFLOW`}
                 </span>
                 <span className="text-xs text-rose-700 font-semibold bg-rose-100 px-2 py-0.5 rounded-full font-mono">
                   {selectedSector
                     ? `${selectedSector} Money OUT`
                     : marketStatus.isMarketOpen
                     ? 'Live Institutional Exit'
-                    : 'Friday Institutional Close'}
+                    : `${sessionDayName} Institutional Close`}
                 </span>
               </div>
               <div className="text-2xl font-black text-rose-800 font-mono tracking-tight mb-3">

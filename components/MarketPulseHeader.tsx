@@ -119,12 +119,16 @@ export default function MarketPulseHeader({
   const [marketStatus, setMarketStatus] = useState<{
     isMarketOpen: boolean;
     sessionState: string;
+    sessionDay?: string;
+    isWeekend?: boolean;
     label: string;
     subLabel: string;
     nextOpenNotice?: string;
   }>({
     isMarketOpen: false,
     sessionState: 'WEEKEND_CLOSED',
+    sessionDay: 'Friday',
+    isWeekend: true,
     label: 'Market Closed (Weekend)',
     subLabel: 'Showing Friday Close net flows · Opens Monday 9:15 AM IST',
     nextOpenNotice: 'NSE & BSE will open on Monday at 09:15 AM IST',
@@ -255,7 +259,7 @@ export default function MarketPulseHeader({
                 title={marketStatus.nextOpenNotice || 'NSE is currently closed for the weekend.'}
               >
                 <span className="w-2 h-2 rounded-full bg-rose-500"></span>
-                <span className="hidden sm:inline">Market Closed (Weekend)</span>
+                <span className="hidden sm:inline">{marketStatus.label || 'Market Closed'}</span>
                 <span className="sm:hidden text-[10px]">Closed</span>
               </div>
             )}
